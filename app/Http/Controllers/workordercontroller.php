@@ -31,7 +31,7 @@ class workordercontroller extends Controller
             $print = ['data'=>$cariuser,'sts'=>'success'];
 
         }else{
-            $print = ['sts'=>'error'];
+            $print = ['data'=>$cariuser,'sts'=>'error'];
         }
 
         
