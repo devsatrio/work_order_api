@@ -15,7 +15,8 @@ class workordercontroller extends Controller
     //========================================================================================
     public function index($unit, Request $request)
     {
-        $beginOfDay = date("Y-m-d H:i:s", strtotime(date('Y-m-d')." 00:00:00"));
+        //$beginOfDay = date("Y-m-d H:i:s", strtotime(date('Y-m-d')." 00:00:00"));
+        $beginOfDay = '2021-09-01 00:00:00';
         $endOfDay   = date("Y-m-d H:i:s", strtotime(date('Y-m-d')." 23:59:59"));
 
         $data = DB::table("work_order")
@@ -23,8 +24,7 @@ class workordercontroller extends Controller
         ->whereBetween('tgl_order',array($beginOfDay,$endOfDay))
         ->orderBy('tgl_order','DESC')
         ->get();
-        $print = ["data" => $data,'sts'=>'success'];
-        return response()->json($print);
+        return response()->json($data);
     }
 
     //========================================================================================
@@ -40,8 +40,6 @@ class workordercontroller extends Controller
         }else{
             $print = ['data'=>$cariuser,'sts'=>'error'];
         }
-
-        
         return response()->json($print);
     }
 }
